@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Directory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Student Directory</h1>
+            <p class="subtitle">Search for students by any criteria</p>
+        </header>
+
+        <div class="search-section">
+            <form id="searchForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="studentId">Student ID</label>
+                        <input type="text" id="studentId" placeholder="e.g., 12345">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" placeholder="e.g., John">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" placeholder="e.g., Smith">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="text" id="dob" placeholder="YYYY-MM-DD">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">Resident City</label>
+                        <input type="text" id="city" placeholder="e.g., Boston">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">Resident State</label>
+                        <input type="text" id="state" placeholder="e.g., MA">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="universityId">University ID</label>
+                        <input type="text" id="universityId" placeholder="e.g., UNI001">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="grade">Grade</label>
+                        <select id="grade">
+                            <option value="">-- Select Grade --</option>
+                            <option value="FRESHMAN">FRESHMAN</option>
+                            <option value="SOPHOMORE">SOPHOMORE</option>
+                            <option value="JUNIOR">JUNIOR</option>
+                            <option value="SENIOR">SENIOR</option>
+                            <option value="GRADUATE">GRADUATE</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">Search Students</button>
+                    <button type="button" class="btn btn-secondary" id="clearBtn">Clear Form</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <h2>Search Results</h2>
+            <div id="resultsContainer"></div>
+        </div>
+    </div>
+
+    <!-- <script>
+        // Sample student data for demonstration
+        const students = [
+            {
+                studentId: "12345",
+                firstName: "John",
+                lastName: "Smith",
+                dob: "2002-05-15",
+                city: "Boston",
+                state: "MA",
+                universityId: "UNI001",
+                grade: "JUNIOR"
+            },
+            {
+                studentId: "12346",
+                firstName: "Emily",
+                lastName: "Johnson",
+                dob: "2001-08-22",
+                city: "Cambridge",
+                state: "MA",
+                universityId: "UNI001",
+                grade: "SENIOR"
+            },
+            {
+                studentId: "12347",
+                firstName: "Michael",
+                lastName: "Williams",
+                dob: "2003-03-10",
+                city: "New York",
+                state: "NY",
+                universityId: "UNI002",
+                grade: "SOPHOMORE"
+            },
+            {
+                studentId: "12348",
+                firstName: "Sarah",
+                lastName: "Brown",
+                dob: "2004-11-30",
+                city: "Boston",
+                state: "MA",
+                universityId: "UNI001",
+                grade: "FRESHMAN"
+            },
+            {
+                studentId: "12349",
+                firstName: "David",
+                lastName: "Davis",
+                dob: "2000-01-18",
+                city: "Chicago",
+                state: "IL",
+                universityId: "UNI003",
+                grade: "GRADUATE"
+            }
+        ];
+
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            searchStudents();
+        });
+
+        document.getElementById('clearBtn').addEventListener('click', function() {
+            document.getElementById('searchForm').reset();
+            document.getElementById('resultsSection').style.display = 'none';
+        });
+
+        function searchStudents() {
+            const searchCriteria = {
+                studentId: document.getElementById('studentId').value.trim().toLowerCase(),
+                firstName: document.getElementById('firstName').value.trim().toLowerCase(),
+                lastName: document.getElementById('lastName').value.trim().toLowerCase(),
+                dob: document.getElementById('dob').value.trim(),
+                city: document.getElementById('city').value.trim().toLowerCase(),
+                state: document.getElementById('state').value.trim().toLowerCase(),
+                universityId: document.getElementById('universityId').value.trim().toLowerCase(),
+                grade: document.getElementById('grade').value
+            };
+
+            const results = students.filter(student => {
+                return Object.keys(searchCriteria).every(key => {
+                    if (!searchCriteria[key]) return true;
+                    return student[key].toString().toLowerCase().includes(searchCriteria[key]);
+                });
+            });
+
+            displayResults(results);
+        }
+
+        function displayResults(results) {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsContainer = document.getElementById('resultsContainer');
+
+            resultsSection.style.display = 'block';
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div class="no-results">No students found matching your criteria. Please try different search terms.</div>';
+                return;
+            }
+
+            resultsContainer.innerHTML = results.map(student => `
+                <div class="student-card">
+                    <h3>${student.firstName} ${student.lastName}</h3>
+                    <div class="student-info">
+                        <div class="info-item">
+                            <span class="info-label">Student ID:</span> ${student.studentId}
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Date of Birth:</span> ${student.dob}
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">City:</span> ${student.city}
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">State:</span> ${student.state}
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">University ID:</span> ${student.universityId}
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Grade:</span> ${student.grade}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script> -->
+</body>
+</html>
