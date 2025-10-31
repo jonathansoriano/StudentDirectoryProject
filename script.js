@@ -26,10 +26,12 @@ function searchStudents(){
         displayResults(response);
     })
     .catch(error => {
+    // Display error message in results section
     const resultsContainer = document.getElementById('resultsContainer');
     const resultsSection = document.getElementById('resultsSection');
+    // Ensure results section is visible
     resultsSection.style.display = 'block';
-
+    // Check if the error is a 404 Not Found
     if (error.response && error.response.status === 404) {
         resultsContainer.innerHTML = '<p>No students found matching the criteria.</p>';
     } else {
