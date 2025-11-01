@@ -48,3 +48,7 @@ This fixed both the template rendering issue and the `undefined` field values in
 
     console.error("Error fetching student data:", error);
 });
+
+---
+
+## 2025-11-01 — Date of Birth UI field is buggy at times. Sometimes returns a 404 or 500
