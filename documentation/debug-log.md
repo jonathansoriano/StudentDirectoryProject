@@ -48,7 +48,12 @@ This fixed both the template rendering issue and the `undefined` field values in
 
     console.error("Error fetching student data:", error);
 });
+```
 
 ---
 
 ## 2025-11-01 — Date of Birth UI field is buggy at times. Sometimes returns a 404 or 500
+**Issue** Browser console was giving the occational 500 when inputing things in DOB field.
+**Cause** Invalid input type (Ex. DOB and Student ID can't be a string) in textboxes. 
+**Fix** (Fix not implemented yet) Handle invalid input types in textboxes using JS or HTML. Type tag, or something like it.
+
