@@ -2,7 +2,8 @@
 
 **Error Handling for invalid types in input fields** Do a type check on the frontend prior to submitting Student Request to API.
 This could be displaying a error(s) to the input that has the wrong type in it. 
-
+[x] Validtion done for Student ID and University ID using onInput() and regex pattern
+[] Validation done for DOB
 ---
 
 **Create a Page that we can add a Student's Information in (POST)** This page needs to match the same thing as the first page.
