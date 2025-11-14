@@ -1,10 +1,10 @@
-// Event listener for Student ID input field blur event- when user moves away from the field
+// Triggered when the user input values into the Student ID input field using oninput event
 document.getElementById("studentId").oninput = function() {
     // Method that validates Student ID input field only taking numeric values
     validateNumericInputById("studentId");
 }
 
-// Event listener for University ID input field input event- when user types in the field
+// Triggered when the user input values into the University ID input field using oninput event
 document.getElementById("universityId").oninput = function() {
     // Method that validates University ID input field only taking numeric values
     validateNumericInputById("universityId");
