@@ -148,6 +148,8 @@ function validateNumericInputById(elementId) {
     }
     else {                                                      // Else If the input is valid             
         element.style.borderBottom = '';                        // Remove any error indication (red border)
+        element.setCustomValidity('');                          // Set custom validity message (Client-side validation)
+        element.reportValidity();                               // Show the validity message to the user
     }
 }
 // POST Endpoint for Spring Boot API
