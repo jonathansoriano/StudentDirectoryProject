@@ -135,7 +135,7 @@ function displayResults(response){
         </div>
     `).join(''); //That turns the array's elements into one big string, with no commas in between.
 }
-
+// Function thatValidates that the input field contains only numeric characters and shows a client-side validation error if invalid.
 function validateNumericInputById(elementId) {
     const element = document.getElementById(elementId);         // Get the input element (textbox) by its ID
     const elementInput = element.value.trim();                  // Get the trimmed value of the textbox

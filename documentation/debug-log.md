@@ -52,8 +52,15 @@ This fixed both the template rendering issue and the `undefined` field values in
 
 ---
 
-## 2025-11-01 — Date of Birth UI field is buggy at times. Sometimes returns a 404 or 500
-**Issue** Browser console was giving the occational 500 when inputing things in DOB field.
-**Cause** Invalid input type (Ex. DOB and Student ID can't be a string) in textboxes. 
-**Fix** (Fix not implemented yet) Handle invalid input types in textboxes using JS or HTML. Type tag, or something like it.
+## 2025-11-01 — Date of Birth UI field is buggy (404/500 Errors)
+**Issue:** The browser console occasionally reported `500 Internal Server Error` or `404 Not Found` when submitting the Date of Birth or Student ID fields.  
+**Cause:** The frontend was sending invalid data types (e.g., sending an empty string or non-numeric characters) to backend API endpoints that expected specific formats like `Long` for IDs or `LocalDate` for dates. Since the backend couldn't parse the malformed strings, it threw an exception.  
+**Fix:** (Pending) Implement client-side validation by setting the `<input>` tag `type` attribute to `number` or `date`. Additionally, use JavaScript to sanitize input or cast values (e.g., `Number(studentId)`) before sending the request to ensure it matches the backend's expected schema.
+
+---
+
+## 2025-12-22 — ReferenceError: document is not defined
+**Issue:** The application crashed immediately on startup with `Uncaught ReferenceError: document is not defined` and `Process exited with code 1`.  
+**Cause:** The script was being executed via **Node.js** (the backend runtime) instead of a web browser. Node.js does not have a UI or a **Document Object Model (DOM)**, so it does not recognize the `document` object used to interact with HTML.  
+**Fix:** Updated `launch.json` to use `pwa-msedge` as the configuration type and set the `url` to `http://127.0.0.1:5500`. This ensures the script runs in the browser environment where the DOM and `document` object are natively available.
 
