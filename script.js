@@ -104,7 +104,7 @@ function searchStudents(){
 // Function to build Axios params object based on provided input values
 function buildAxiosParams(id, firstName, lastName, dob, residentCity, residentState, universityId, grade) {
     const params = {};          // Initialize an empty params object
-    if (id && id.trim() !== '') {
+    if (id && id.trim() !== '') { // First condition: make sure something was passed in at all (not null/undefined), and second condition: make sure it's not just whitespace (after trimming)
         params.id = id.trim(); // Syntax to add id only if it's provided, instead of using fieldName: value
     }
     if (firstName && firstName.trim() !== '') {
